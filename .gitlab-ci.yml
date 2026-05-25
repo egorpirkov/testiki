@@ -1,16 +1,10 @@
-image: alpine:latest
-
 stages:
   - deploy
 
-pages:
+deploy-web:
     stage: deploy
     script:
-        - mkdir -p public
-        - mv index.html public/
         - echo "деплой пошол"
-    artifacts:
-        paths:
-            - public
+        - docker compose up -d --build
     only:
         - main

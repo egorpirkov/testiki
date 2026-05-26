@@ -9,7 +9,7 @@ build_frontend:
     script:
         - echo "Stage build_frontend ... "
         - sleep 3
-        - docker build -t my-frontend:latest ./Dockerfile.front
+        - docker build -f ./Dockerfile.front -t my-frontend:latest .
     only:
         - main
 
@@ -18,7 +18,7 @@ build_backend:
     script:
         - echo "Stage build_backend ... "
         - sleep 3
-        - docker build -t my-backend:latest ./Dockerfile.back
+        - docker build -f ./Dockerfile.back -t my-backend:latest .
     only:
         - main
 

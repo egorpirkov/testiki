@@ -34,6 +34,7 @@ tests:
 deploy:
     stage: deploy
     script:
+        - docker rm -f $(docker ps -aq)
         - docker run -d --name my-site-build_frontend -p 3499:80 my-frontend:latest
         - docker run -d --name my-site-build_backend -p 6969:80 my-backend:latest
     only:

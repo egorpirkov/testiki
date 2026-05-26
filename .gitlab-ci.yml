@@ -1,10 +1,13 @@
 stages:
-  - deploy
+  - deploy_and_build
 
 deploy-web:
-    stage: deploy
+    stage: deploy_and_build
+    image: docker:latest
     script:
         - echo "деплой пошол"
-        - docker compose up -d --build
+        - sleep 5
+        - docker build -t my-app:latest
+        - docker run -d --name my-saytik -p 3499:80 my-app:latest
     only:
         - main

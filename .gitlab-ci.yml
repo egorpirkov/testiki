@@ -35,6 +35,6 @@ deploy:
     stage: deploy
     script:
         - docker run -d --name my-site-build_frontend -p 3499:80 my-frontend:latest
-        - docker run -d --name my-site-build_backend -p 3499:6969 my-backend:latest
+        - docker run -d --name my-site-build_backend -p 6969:80 my-backend:latest
     only:
         - main

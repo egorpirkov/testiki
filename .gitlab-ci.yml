@@ -7,7 +7,7 @@ deploy-web:
     script:
         - echo "деплой пошол"
         - sleep 5
-        - docker build -t my-app:latest
+        - docker build -t my-app:latest .
         - docker run -d --name my-saytik -p 3499:80 my-app:latest
     only:
         - main

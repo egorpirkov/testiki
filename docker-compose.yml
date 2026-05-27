@@ -3,6 +3,7 @@ services:
     image: nginx:alpine
     volumes:
     - ./index.html:/usr/share/nginx/html/index.html:ro
+    - ./nginx.conf/:/etc/nginx/conf.d/default.conf
     ports:
     - "9192:80"
   back:

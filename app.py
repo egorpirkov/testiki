@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/api', methods=['GET'])
+@app.route('/api/', methods=['GET'], strict_slashes=False)
 def greet():
     return jsonify({"message": "Hello, DevOps Engineer!"})
 

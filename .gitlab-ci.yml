@@ -1,41 +1,10 @@
 stages:
-  - build_frontend
-  - build_backend
-  - emulate_some_tests
   - deploy
-
-build_frontend:
-    stage: build_frontend
-    script:
-        - echo "Stage build_frontend ... "
-        - sleep 3
-        - docker build -f ./Dockerfile.front -t my-frontend:latest .
-    only:
-        - main
-
-build_backend:
-    stage: build_backend
-    script:
-        - echo "Stage build_backend ... "
-        - sleep 3
-        - docker build -f ./Dockerfile.back -t my-backend:latest .
-    only:
-        - main
-
-tests:
-    stage: emulate_some_tests
-    script:
-        - echo "Running some tests. It is gon take something like 7-8 seconds."
-        - sleep 7
-        - echo "Done!"
-    only:
-        - main
 
 deploy:
     stage: deploy
     script:
         - docker rm -f $(docker ps -aq) # rm all containers
-        - docker run -d --name my-site-build_frontend -p 3499:80 my-frontend:latest
-        - docker run -d --name my-site-build_backend -p 6969:6969 my-backend:latest
+        - docker compose up -d --build
     only:
         - main

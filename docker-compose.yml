@@ -1,7 +1,19 @@
 services:
-  web:
+  front:
     image: nginx:alpine
     volumes:
     - ./index.html:/usr/share/nginx/html/index.html:ro
     ports:
     - "9192:80"
+  back:
+    build:
+      context: .
+      dockerfile: Dockerfile.back
+    container_name: flask_back
+    ports:
+    - "6969:6969"
+    volumes:
+    - ".:/app"
+    environment:
+    - PYTHONUNBUFFERED=1
+    restart: unless-stopped
